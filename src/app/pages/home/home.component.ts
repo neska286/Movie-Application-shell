@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 import { TvService } from '../../services/tv.service';
+import { Item } from '../../components/item/item';
+import {mapMovieToItem} from '../../models/movie';
+import { mapTvShowToItem} from '../../models/tv'
 
 @Component({
   selector: 'app-home',
@@ -9,26 +11,28 @@ import { TvService } from '../../services/tv.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  popularMovies: Movie [] = [];
-  upcomingMovies: Movie [] = [];
-  topratedMovies : Movie [] = [];
-  popularTV : Movie [] = []
+  popularMovies: Item [] = [];
+  upcomingMovies: Item [] = [];
+  topratedMovies : Item [] = [];
+  popularTvShows: Item[] = [];
 
   constructor(private moviesService: MoviesService , private tvService : TvService) {}
 
   ngOnInit(): void {
    this.moviesService.getMovies('popular').subscribe((response)=>{
-     this.popularMovies = response
+     this.popularMovies = response.map((movie)=>  mapMovieToItem(movie))
    });
    this.moviesService.getMovies('upcoming').subscribe((response)=>{
-    this.upcomingMovies = response
+    this.upcomingMovies = response.map((movie)=>  mapMovieToItem(movie))
   });
   this.moviesService.getMovies('top_rated').subscribe((response)=>{
-    this.topratedMovies = response
+    this.topratedMovies = response.map((movie)=>  mapMovieToItem(movie))
   });
 
-  this.tvService.getTVShows('popular').subscribe((data : any)=>{
-    this.popularTV = data.results
+  this.tvService.getTvShows('popular').subscribe((tvShows)=>{
+    this.popularTvShows = tvShows.map((tvshow) => mapTvShowToItem(tvshow));
   })
   }
 }
+
+

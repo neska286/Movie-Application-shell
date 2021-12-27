@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TvService } from '../../services/tv.service';
-import { Tv } from '../../models/tv';
+import { TvShow } from '../../models/tv';
 
 @Component({
   selector: 'tv-shows',
@@ -8,15 +8,19 @@ import { Tv } from '../../models/tv';
   styleUrls: ['./tv-shows.component.scss']
 })
 export class TvShowsComponent implements OnInit {
-  tvShows: Tv [] =[]
+  tvShows: TvShow[] =[]
 
   constructor(private tvService : TvService) { }
 
   ngOnInit(): void {
-    this.tvService.getTVShows('popular',20).subscribe((tvshowsData)=>{
-     this.tvShows = tvshowsData
-     console.log(this.tvShows);
-    })
+   this.getPagedTvShows(1);
   }
-
+  getPagedTvShows(page:number) {
+    this.tvService.serachTvShows(page).subscribe((tvshowsData)=>{
+      this.tvShows = tvshowsData
+     })
+  }
+  paginate(event : any) {
+   this.getPagedTvShows(event.page +1);
+  }
 }

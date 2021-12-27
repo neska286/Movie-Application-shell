@@ -5,7 +5,7 @@
                 <img class="slide-bg-image" [src]="imageSizes.large +item.backdrop_path" alt="">
             </div>
             <div class="slide-pane">
-                <h2 class="name">{{item.original_title}} {{i}}</h2>
+                <h2 class="name">{{item.title ?? item.name}}</h2>
                 <div class="meta">
                     <div class="info">
                         <i class="rating"><span class="app-icons">

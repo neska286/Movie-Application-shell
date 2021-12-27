@@ -23,10 +23,11 @@ import { VideoEmbedComponent } from './components/video-embed/video-embed.compon
 import { ItemsBannerComponent } from './components/items-banner/items-banner.component';
 import { GenersComponent } from './pages/geners/geners.component';
 import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
+import { TvShowComponent } from './pages/tv-show/tv-show.component';
 
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, MoviesComponent, SliderComponent, ItemBannerComponent, ItemComponent, MovieComponent, VideoEmbedComponent, ItemsBannerComponent, GenersComponent, TvShowsComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, HomeComponent, MoviesComponent, SliderComponent, ItemBannerComponent, ItemComponent, MovieComponent, VideoEmbedComponent, ItemsBannerComponent, GenersComponent, TvShowsComponent, TvShowComponent],
   imports: [BrowserModule,BrowserAnimationsModule, AppRoutingModule, HttpClientModule,PaginatorModule,TabViewModule,ImageModule,CarouselModule,InputTextModule],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,16 +1,16 @@
-
+import {Item} from '../components/item/item';
 
 export interface Movie {
     adult: boolean,
     backdrop_path:string,
     genre_ids: number [],
-    id: string,
+    id: number,
     original_language: string,
     original_title:  string;
     overview:  string,
     popularity:number,
     poster_path:  string,
-    release_date: number,
+    release_date: string,
     title: string,
     video: boolean,
     vote_average: number,
@@ -57,3 +57,17 @@ export interface MovieCredits {
    
 }
 
+export const mapMovieToItem = (movie: Movie): Item => {
+    return {
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      vote_average: movie.vote_average,
+      backdrop_path: movie.backdrop_path,
+      vote_count: movie.vote_count,
+      release_date: movie.release_date,
+      overview: movie.overview,
+      routePath: '/movie/' + movie.id
+    };
+  };
+  
